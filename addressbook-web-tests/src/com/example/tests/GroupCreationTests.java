@@ -2,7 +2,7 @@ package com.example.tests;
 
 import org.testng.annotations.Test;
 
-public class SampleTest extends TestBase {
+public class GroupCreationTests extends TestBase {
 
 	@Test
 	public void testNonEmptyGroupCreation() throws Exception {
@@ -31,6 +31,4 @@ public class SampleTest extends TestBase {
 		submitGroupCreation();
 		returnToGroupsPage();
 	}
-	
-
 }
