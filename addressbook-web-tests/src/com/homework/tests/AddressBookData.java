@@ -15,7 +15,7 @@ public class AddressBookData {
 	public String group = "";
 	public String addressSecondary = "";
 	public String telephoneHomeSec = "";
-
+ 
 	public AddressBookData() {
 	}
 

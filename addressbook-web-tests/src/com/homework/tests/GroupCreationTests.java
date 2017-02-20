@@ -15,7 +15,7 @@ public class GroupCreationTests extends TestBase {
 		fillGroupsForm(valueObject);
 		submitGroupForm();
 		returnToGroupsPage();
-	}
+	} 
 	
 	@Test
 	public void testEmptyGroupCreation() throws Exception {

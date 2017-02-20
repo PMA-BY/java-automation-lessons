@@ -84,7 +84,7 @@ public class TestBase {
 	    driver.findElement(By.name("phone2")).clear();
 	    driver.findElement(By.name("phone2")).sendKeys(valueObject.telephoneHomeSec);
 	}
-
+ 
 	protected void initGroupCreation() {
 		driver.findElement(By.name("new")).click();
 	}

@@ -27,7 +27,7 @@ public class AddressRecordCreationTests extends TestBase {
 		
 		fillAddressBookForm(valueObject);
 		submitAddressBookForm();
-		openMainPage();
+		openMainPage(); 
 	}
 	
 	@Test

@@ -10,7 +10,7 @@ public class GroupData {
 		this.header = header;
 		this.footer = footer;
 	}
-
+ 
 	public GroupData() {
 	}
 
