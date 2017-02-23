@@ -18,6 +18,7 @@ public class ApplicationManager {
 		driver = new ChromeDriver();
 		baseUrl = "http://localhost/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(baseUrl + "/addressbook/");
 
 		/* Background (generic) init
 		 * groupHelper = new GroupHelper(this); contactHelper = new
@@ -29,7 +30,7 @@ public class ApplicationManager {
 		driver.quit();
 	}
 
-	public NavigationHelper getNavigationHelper() {
+	public NavigationHelper navigateTo() {
 		if (navigationHelper == null) {
 			navigationHelper = new NavigationHelper(this);
 		}

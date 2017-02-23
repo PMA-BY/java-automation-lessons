@@ -1,12 +1,14 @@
 package com.example.tests;
 
+import static com.example.fw.ContactHelper.MODIFICATION;
+
 import org.testng.annotations.Test;
 
 public class ContactModificationTests extends TestBase {
 
 	@Test
 	public void modifySomeContact() {
-		app.getNavigationHelper().openMainPage(); // go to Home / Contacts Page
+		app.navigateTo().mainPage(); // go to Home / Contacts Page
 
 		int index = 1;
 
@@ -15,10 +17,11 @@ public class ContactModificationTests extends TestBase {
 		ContactData contact = new ContactData();
 		contact.lastName = "NEW last name";
 
-		app.getContactHelper().fillAddressBookForm(contact);
+		app.getContactHelper().fillAddressBookForm(contact, MODIFICATION);
+		
 		app.getContactHelper().submitContactModification();
 
-		app.getNavigationHelper().openMainPage(); // return to Home / Contacts
+		app.navigateTo().mainPage(); // return to Home / Contacts
 													// Page
 	}
 

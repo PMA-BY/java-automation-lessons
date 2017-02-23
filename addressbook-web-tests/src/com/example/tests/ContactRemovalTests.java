@@ -6,12 +6,12 @@ public class ContactRemovalTests extends TestBase {
 
 	@Test
 	public void deleteSomeContact() {
-		app.getNavigationHelper().openMainPage();				// go to Home / Contacts Page
+		app.navigateTo().mainPage();				// go to Home / Contacts Page
 		
-		int index = 1;
+		int index = 0;
 		
 		app.getContactHelper().deleteContact(index);
-		app.getNavigationHelper().openMainPage();				// return to Home / Contacts Page
+		app.navigateTo().mainPage();				// return to Home / Contacts Page
 	}
 
 }

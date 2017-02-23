@@ -1,12 +1,19 @@
 package com.example.tests;
 
+import java.util.List;
+
 import org.testng.annotations.Test;
+
+import com.example.fw.ContactHelper;
+import static com.example.fw.ContactHelper.CREATION;
+
+
 
 public class ContactCreationTests extends TestBase {
 	
 	@Test
 	public void testContactCreation() throws Exception {
-		app.getNavigationHelper().openMainPage();
+		app.navigateTo().mainPage();
 		app.getContactHelper().initContactCreation();
 		
 		ContactData contact = new ContactData();
@@ -25,21 +32,22 @@ public class ContactCreationTests extends TestBase {
 		contact.addressSecondary 		= "SEC address 1";
 		contact.telephoneHomeSec 		= "42345678-1";
 		
-		app.getContactHelper().fillAddressBookForm(contact);
+		app.getContactHelper().fillAddressBookForm(contact, CREATION);
 		app.getContactHelper().submitContactForm();
-		app.getNavigationHelper().openMainPage(); 
+		app.navigateTo().mainPage(); 
 	}
 	
 	@Test
 	public void testEmptyAddressRecordCreation() throws Exception {
-		app.getNavigationHelper().openMainPage();
+		app.navigateTo().mainPage();
 		app.getContactHelper().initContactCreation();	
 		
 		ContactData contact = new ContactData();
-		app.getContactHelper().fillAddressBookForm(contact);
+		app.getContactHelper().fillAddressBookForm(contact, CREATION);
 		
 		app.getContactHelper().submitContactForm();
-		app.getNavigationHelper().openMainPage();
+		app.navigateTo().mainPage();
 	}
 
+	
 }
