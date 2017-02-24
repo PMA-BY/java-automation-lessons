@@ -1,13 +1,20 @@
 package com.example.tests;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+
+import static com.example.tests.GroupDataGenerator.generateRandomGroups;
 
 import com.example.fw.ApplicationManager;
 
@@ -15,13 +22,17 @@ public class TestBase {
 
 	protected ApplicationManager app;
 
-	@BeforeSuite
+	@BeforeTest
 	public void setUp() throws Exception {
-		app = new ApplicationManager();
 
+		String configFile = System.getProperty("configFile", "application.properties");
+
+		Properties properties = new Properties();
+		properties.load(new FileReader(new File(configFile)));
+		app = new ApplicationManager(properties);
 	}
 
-	@AfterSuite
+	@AfterTest
 	public void tearDown() throws Exception {
 		app.stop();
 
@@ -29,17 +40,15 @@ public class TestBase {
 
 	@DataProvider
 	public Iterator<Object[]> randomValidGroupGenerator() {
+		return wrapGroupsForDataProvider(generateRandomGroups(5)).iterator();
+	}
+
+	protected static List<Object[]> wrapGroupsForDataProvider(List<GroupData> groups) {
 		List<Object[]> list = new ArrayList<Object[]>();
-		for (int iterator = 0; iterator < 5; iterator++) {
-
-			GroupData group = new GroupData()
-					.withName(generateRandomString())
-					.withHeader(generateRandomString())
-					.withFooter(generateRandomString());
-
+		for (GroupData group : groups) {
 			list.add(new Object[] { group });
 		}
-		return list.iterator();
+		return list;
 	}
 
 	@DataProvider
@@ -48,36 +57,26 @@ public class TestBase {
 		for (int iterator = 0; iterator < 5; iterator++) {
 			ContactData contact = new ContactData();
 
-			contact.firstName = generateRandomString();
-			contact.lastName = generateRandomString();
-			contact.addressPrimary = generateRandomString();
-			contact.telephoneHomePri = generateRandomString();
-			contact.telephoneMobile = generateRandomString();
-			contact.telephoneWork = generateRandomString();
-			contact.email1 = generateRandomString();
-			contact.email2 = generateRandomString();
 			contact.birthdayDay = generateRandomString(28);
 			contact.birthdayMonth = generateRandomMonthString();
 			contact.birthdayYear = String.valueOf(1977 + Integer.parseInt((generateRandomString(40))));
 			// contact.group = "";
-			contact.addressSecondary = generateRandomString();
-			contact.telephoneHomeSec = generateRandomString();
 
 			list.add(new Object[] { contact });
 		}
 		return list.iterator();
 	}
 
-	public String generateRandomString() {
-		Random rnd = new Random();
-		String string;
-		if (rnd.nextInt(5) == 0) {
-			string = "";
-		} else {
-			string = "test_" + rnd.nextInt();
-		}
-		return string;
-	}
+	// public String generateRandomString() {
+	// Random rnd = new Random();
+	// String string;
+	// if (rnd.nextInt(5) == 0) {
+	// string = "";
+	// } else {
+	// string = "test_" + rnd.nextInt();
+	// }
+	// return string;
+	// }
 
 	public String generateRandomString(int max_value) {
 		Random rnd = new Random();
