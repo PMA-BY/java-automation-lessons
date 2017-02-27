@@ -1,3 +1,10 @@
 /addressbook-web-tests/bin
 Default suite
 test-output
+/addressbook-native-tests/bin/com/example/fw/AutoItHelper.class
+/addressbook-native-tests/bin/com/example/fw/ProcessHelper.class
+/addressbook-native-tests/bin/com/example/tests/ContactDataGenerator.class
+/addressbook-native-tests/bin/com/example/tests/TestContactCreation.class
+/addressbook-native-tests/bin/com/example/tests/TestContactDeletion.class
+/addressbook-native-tests/bin/com/example/utils/ListOf.class
+/addressbook-native-tests/bin/com/example/utils/SortedListOf.class
