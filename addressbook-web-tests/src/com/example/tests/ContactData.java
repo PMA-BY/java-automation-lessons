@@ -1,6 +1,7 @@
 package com.example.tests;
 
 public class ContactData {
+	public Integer id;
 	public String firstName;
 	public String lastName;
 	public String addressPrimary;
@@ -19,9 +20,10 @@ public class ContactData {
 	public ContactData() {
 	}
 
-	public ContactData(String firstName, String lastName, String addressPrimary, String telephoneHomePri,
+	public ContactData(Integer id, String firstName, String lastName, String addressPrimary, String telephoneHomePri,
 			String telephoneMobile, String telephoneWork, String email1, String email2, String birthdayDay,
 			String birthdayMonth, String birthdayYear, String group, String addressSecondary, String telephoneHomeSec) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.addressPrimary = addressPrimary;

@@ -12,42 +12,25 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class ApplicationManager {
 
-	public WebDriver driver;
+	private WebDriver driver;
 	public String baseUrl;
 
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
-	// private Properties properties;
+	private Properties properties;
+	private HibernateHelper hibernateHelper;
+
+	private ApplicationModel model;
 
 	public ApplicationManager(Properties properties) {
-		String browser = properties.getProperty("browser");
-		if ("chrome".equals(browser)) {
-			driver = new ChromeDriver();
-		} else if ("firefox".equals(browser)) {
-			driver = new FirefoxDriver();
-		} else if ("ie".equals(browser)) {
-			System.setProperty("webdriver.ie.driver",
-					new File("C:/git/Selenium/MicrosoftWebDriver.exe").getAbsolutePath());
-			// System.setProperty("webdriver.ie.driver",
-			// "D:/iexploredriver.exe");
-			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
-			driver = new InternetExplorerDriver(caps);
-		} else {
-			throw new Error("Unsupported Browser: " + browser);
-		}
+		this.properties = properties;
+		model = new ApplicationModel();
+		model.setGroups(getHibernateHelper().listGroups());
+	}
 
-		baseUrl = properties.getProperty("baseUrl"); // baseUrl =
-														// "http://localhost/addressbook/";
-
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get(baseUrl);
-
-		/*
-		 * Background (generic) init groupHelper = new GroupHelper(this);
-		 * contactHelper = new ContactHelper(this);
-		 */
+	public ApplicationModel getModel() {
+		return model;
 	}
 
 	public void stop() {
@@ -74,4 +57,42 @@ public class ApplicationManager {
 		}
 		return contactHelper;
 	}
+
+	public HibernateHelper getHibernateHelper() {
+		if (hibernateHelper == null) {
+			hibernateHelper = new HibernateHelper(this);
+		}
+		return hibernateHelper;
+	}
+
+	public WebDriver getDriver() {
+		String browser = properties.getProperty("browser");
+
+		if (driver == null) {
+			if ("chrome".equals(browser)) {
+				driver = new ChromeDriver();
+			} else if ("firefox".equals(browser)) {
+				driver = new FirefoxDriver();
+			} else if ("ie".equals(browser)) {
+				System.setProperty("webdriver.ie.driver",
+						new File("C:/git/Selenium/MicrosoftWebDriver.exe").getAbsolutePath());
+				// System.setProperty("webdriver.ie.driver",
+				// "D:/iexploredriver.exe");
+				DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+				caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				driver = new InternetExplorerDriver(caps);
+			} else {
+				throw new Error("Unsupported Browser: " + browser);
+			}
+
+			baseUrl = properties.getProperty("baseUrl"); // baseUrl =
+															// "http://localhost/addressbook/";
+
+			// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+			driver.get(baseUrl);
+		}
+		return driver;
+	}
+
 }
