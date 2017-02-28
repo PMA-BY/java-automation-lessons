@@ -94,5 +94,9 @@ public class ApplicationManager {
 		}
 		return driver;
 	}
+	
+	public String getProperty (String key) {
+		return properties.getProperty(key);
+	}
 
 }

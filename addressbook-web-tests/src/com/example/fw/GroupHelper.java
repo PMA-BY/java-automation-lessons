@@ -77,6 +77,21 @@ public class GroupHelper extends WebDriverHelperBase {
 
 	// --------------------------------------------------------------------------------------
 
+	public SortedListOf<GroupData> getUiGroups() {
+		SortedListOf<GroupData> groups = new SortedListOf<GroupData>();
+
+		manager.navigateTo().groupsPage();
+ 
+		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
+
+		for (WebElement checkbox : checkboxes) {
+			String title = checkbox.getAttribute("title");
+			String name = title.substring("Select (".length(), title.length() - ")".length());
+			groups.add(new GroupData().withName(name));
+		}
+		return groups;
+	}
+	
 	public GroupHelper initGroupCreation() {
 		manager.navigateTo().groupsPage();
 		click(By.name("new"));
