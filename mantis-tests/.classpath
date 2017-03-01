@@ -8,5 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Commons Net"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java Mail"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Simple Logging Facade for Java"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -19,6 +19,8 @@ public class ApplicationManager {
 	private Properties properties;
 	private HibernateHelper hibernateHelper;
 	private AccountHelper accountHelper;
+	private FtpHelper ftpHelper;
+	private AdminHelper adminHelper;
 
 
 	public ApplicationManager(Properties properties) {
@@ -27,14 +29,29 @@ public class ApplicationManager {
 
 
 	public void stop() {
+		getFtpHelper().restoreConfig(); 
 		driver.quit();
 	}
 
+	public AdminHelper getAdminHelper() {
+		if (adminHelper == null) {
+			adminHelper = new AdminHelper(this);
+		}
+		return adminHelper;
+	}
+	
 	public AccountHelper getAccountHelper() {
 		if (accountHelper == null) {
 			accountHelper = new AccountHelper(this);
 		}
 		return accountHelper;
+	}
+	
+	public FtpHelper getFtpHelper() {
+		if (ftpHelper == null) {
+			ftpHelper = new FtpHelper(this);
+		}
+		return ftpHelper;
 	}
 
 	

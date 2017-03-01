@@ -24,4 +24,9 @@ public class AccountHelper extends HelperWithWebDriverBase {
 		return false;
 	}
 
+	public void login(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

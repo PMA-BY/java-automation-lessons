@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="addressbook-native-tests/src"/>
+	<classpathentry kind="src" path="addressbook-web-tests/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="addressbook-native-tests/bin"/>
+</classpath>
