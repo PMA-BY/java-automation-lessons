@@ -7,6 +7,7 @@ public class GroupData implements Comparable<GroupData> {
 	private String footer;
 
 	public GroupData() {
+		// nada
 	}
 	
 
@@ -19,7 +20,7 @@ public class GroupData implements Comparable<GroupData> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		// result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -40,7 +41,6 @@ public class GroupData implements Comparable<GroupData> {
 		return true;
 	}
 
-	@Override
 	public int compareTo(GroupData other) {
 		return this.name.toLowerCase().compareTo(other.name.toLowerCase());
 	}

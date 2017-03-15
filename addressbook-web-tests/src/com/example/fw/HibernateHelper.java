@@ -24,6 +24,7 @@ public class HibernateHelper extends HelperBase {
         		  (List<GroupData>) session.createQuery("from GroupData").list());
 		} finally {
           trans.commit();
+          // session.getSessionFactory().close();
 		}
 	}
 //

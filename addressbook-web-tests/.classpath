@@ -11,5 +11,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Simple Logging Facade for Java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hamcrest"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Web Driver"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

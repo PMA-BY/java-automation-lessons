@@ -17,9 +17,6 @@ public class ContactData {
 	public String addressSecondary;
 	public String telephoneHomeSec;
  
-	public ContactData() {
-	}
-
 	public ContactData(Integer id, String firstName, String lastName, String addressPrimary, String telephoneHomePri,
 			String telephoneMobile, String telephoneWork, String email1, String email2, String birthdayDay,
 			String birthdayMonth, String birthdayYear, String group, String addressSecondary, String telephoneHomeSec) {
@@ -38,6 +35,10 @@ public class ContactData {
 		this.group = group;
 		this.addressSecondary = addressSecondary;
 		this.telephoneHomeSec = telephoneHomeSec;
+	}
+
+	public ContactData() {
+		// Auto-generated constructor stub
 	}
 
 //	public void setFirstName(String firstName) {

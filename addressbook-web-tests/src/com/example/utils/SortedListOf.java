@@ -10,76 +10,101 @@ import com.google.common.collect.Lists;
 
 public class SortedListOf<T extends Comparable<T>> extends ForwardingList<T> {
 
-  private List<T> list = Lists.newArrayList();
-  
-  public SortedListOf() {
-  }
+	private List<T> list = Lists.newArrayList();
 
-  public SortedListOf(SortedListOf<T> listToCopy) {
-    list = Lists.newArrayList(listToCopy.list);
-    Collections.sort(list);
-  }
+	public SortedListOf() {
+	}
 
-  public SortedListOf(List<T> listToCopy) {
-    list = Lists.newArrayList(listToCopy);
-    Collections.sort(list);
-  }
+	public SortedListOf(SortedListOf<T> listToCopy) {
+		list = Lists.newArrayList(listToCopy.list);
+		Collections.sort(list);
+	}
 
-  @Override
-  protected List<T> delegate() {
-    return list;
-  }
+	public SortedListOf(List<T> listToCopy) {
+		list = Lists.newArrayList(listToCopy);
+		Collections.sort(list);
+	}
 
-  @Override
-  public boolean add(T element) {
-    boolean temp = super.add(element);
-    Collections.sort(list);
-    return temp;
-  }
+	@Override
+	protected List<T> delegate() {
+		return list;
+	}
 
-  @Override
-  public boolean addAll(Collection<? extends T> collection) {
-    boolean temp = super.addAll(collection);
-    Collections.sort(list);
-    return temp;
-  }
+	@Override
+	public boolean add(T element) {
+		boolean temp = super.add(element);
+		Collections.sort(list);
+		return temp;
+	}
 
-  public SortedListOf<T> withAdded(T item) {
-    SortedListOf<T> newItems = new SortedListOf<T>();
-    newItems.list = Lists.newArrayList(this.list);
-    newItems.list.add(item);
-    Collections.sort(newItems.list);
-    return newItems;
-  }
+	@Override
+	public boolean addAll(Collection<? extends T> collection) {
+		boolean temp = super.addAll(collection);
+		Collections.sort(list);
+		return temp;
+	}
 
-  public SortedListOf<T> withAdded(T item, T item2) {
-	    SortedListOf<T> newItems = new SortedListOf<T>();
-	    newItems.list = Lists.newArrayList(this.list);
-	    newItems.list.add(item);
-	    newItems.list.add(item2);
-	    Collections.sort(newItems.list);
-	    return newItems;
-	  }
-  
-  public SortedListOf<T> without(T item) {
-    SortedListOf<T> newItems = new SortedListOf<T>();
-    newItems.list = Lists.newArrayList(this.list);
-    newItems.list.remove(item);
-    return newItems;
-  }
-  
-  public SortedListOf<T> without(int index) {
-    SortedListOf<T> newItems = new SortedListOf<T>();
-    newItems.list = Lists.newArrayList(this.list);
-    newItems.list.remove(index);
-    return newItems;
-  }
+	public SortedListOf<T> withAdded(T item) {
+		SortedListOf<T> newItems = new SortedListOf<T>();
+		newItems.list = Lists.newArrayList(this.list);
+		newItems.list.add(item);
+		Collections.sort(newItems.list);
+		return newItems;
+	}
 
-  public T getSome() {
-    if (size() == 0) {
-      return null;
-    } else {
-      return list.get(new Random().nextInt(size()));
-    }
-  }
+	public SortedListOf<T> withAdded(T item, T item2) {
+		SortedListOf<T> newItems = new SortedListOf<T>();
+		newItems.list = Lists.newArrayList(this.list);
+		newItems.list.add(item);
+		newItems.list.add(item2);
+		Collections.sort(newItems.list);
+		return newItems;
+	}
+
+	public SortedListOf<T> without(T item) {
+		SortedListOf<T> newItems = new SortedListOf<T>();
+		newItems.list = Lists.newArrayList(this.list);
+		newItems.list.remove(item);
+		return newItems;
+	}
+
+	public SortedListOf<T> without(int index) {
+		SortedListOf<T> newItems = new SortedListOf<T>();
+		newItems.list = Lists.newArrayList(this.list);
+		newItems.list.remove(index);
+		return newItems;
+	}
+
+	public T getSome() {
+		if (size() == 0) {
+			return null;
+		} else {
+			return list.get(new Random().nextInt(size()));
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((list == null) ? 0 : list.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SortedListOf other = (SortedListOf) obj;
+		if (list == null) {
+			if (other.list != null)
+				return false;
+		} else if (!list.equals(other.list))
+			return false;
+		return true;
+	}
 }

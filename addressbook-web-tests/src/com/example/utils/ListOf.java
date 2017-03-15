@@ -11,6 +11,7 @@ public class ListOf<T> extends ForwardingList<T> {
   private List<T> list = Lists.newArrayList();
   
   public ListOf() {
+	  // special purpose
   }
 
   public ListOf(ListOf<T> listToCopy) {

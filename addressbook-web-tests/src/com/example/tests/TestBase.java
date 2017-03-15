@@ -74,7 +74,7 @@ public class TestBase {
 
 			contact.birthdayDay = generateRandomString(28);
 			contact.birthdayMonth = generateRandomMonthString();
-			contact.birthdayYear = String.valueOf(1977 + Integer.parseInt((generateRandomString(40))));
+			contact.birthdayYear = String.valueOf(1977 + Integer.parseInt(generateRandomString(40)));
 			// contact.group = "";
 
 			list.add(new Object[] { contact });
@@ -93,9 +93,9 @@ public class TestBase {
 	// return string;
 	// }
 
-	public String generateRandomString(int max_value) {
+	public String generateRandomString(int maxValue) {
 		Random rnd = new Random();
-		int value = rnd.nextInt(max_value);
+		int value = rnd.nextInt(maxValue);
 		String string;
 		if (value == 0) {
 			string = Integer.toString(value + 1);
@@ -108,12 +108,12 @@ public class TestBase {
 	public String generateRandomMonthString() {
 		Random rnd = new Random();
 		String monthString;
-		int month_num = rnd.nextInt(12);
+		int monthNum = rnd.nextInt(12);
 
-		if (month_num == 0) {
+		if (monthNum == 0) {
 			monthString = "January";
 		} else {
-			switch (month_num) {
+			switch (monthNum) {
 			case 1:
 				monthString = "January";
 				break;
